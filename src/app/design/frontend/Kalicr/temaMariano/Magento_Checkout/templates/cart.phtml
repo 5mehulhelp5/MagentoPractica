@@ -1,0 +1,17 @@
+<?php
+/**
+ * Shopping cart template override
+ * Custom template check — Kalicr theme
+ */
+?>
+<div style="text-align:center; background:#f9f9f9; padding:10px; color:#555;">
+    <small>🛒 Custom Cart Template Loaded (Kalicr Theme)</small>
+</div>
+
+<?php
+if ($block->getItemsCount()) {
+    echo $block->getChildHtml('with-items');
+} else {
+    echo $block->getChildHtml('no-items');
+}
+?>

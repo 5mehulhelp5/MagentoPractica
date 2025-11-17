@@ -1,0 +1,23 @@
+{
+  "name": "kalicr/temaMariano",
+  "description": "Tema personalizado Mariano para Magento 2",
+  "type": "magento2-theme",
+  "version": "1.0.0",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ]
+  },
+  "extra": {
+    "map": [
+      [
+        "*",
+        "app/design/frontend/Kalicr/temaMariano"
+      ]
+    ],
+    "preview-image": "web/images/preview.png"  
+  },
+  "require": {
+    "magento/theme-frontend-luma": "*"
+  }
+}
