@@ -1,0 +1,4 @@
+bin/magento cache:clean
+bin/magento cache:flush
+bin/magento setup:static-content:deploy -f
+
