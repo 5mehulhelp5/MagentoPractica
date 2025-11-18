@@ -90,6 +90,9 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                 </span>
             </td>
         <?php else: ?>
+             <td class="col custom" data-th="<?= $block->escapeHtml(__('Custom')) ?>">
+                <?= "Texto Custom" ?>
+            </td>
             <td class="col price" data-th="<?= $block->escapeHtml(__('Price')) ?>">
                 <?= $block->getUnitPriceHtml($_item) ?>
             </td>
