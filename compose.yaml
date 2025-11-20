@@ -47,6 +47,7 @@ services:
     env_file: env/db.env
     volumes:
       - dbdata:/var/lib/mysql
+      - .docker/mysql:/etc/mysql/conf.d
 
   ## If you wish to use MySQL, comment out the mariadb db image above and
   ## uncomment this block.
