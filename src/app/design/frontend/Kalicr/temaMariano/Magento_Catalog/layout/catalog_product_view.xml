@@ -1,8 +1,33 @@
 <?xml version="1.0"?>
-<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page layout="1column"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <move element="page.main.title" destination="product.info.main" before="-"/>
         <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/>
         <move element="product.info.review" destination="product.info.main" after="product.info.price"/>
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="product.info.pdf"
+                   template="Magento_Catalog::product/view/manual.phtml"
+                   group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">PDF File</argument>
+                    <argument name="sort_order" xsi:type="number">40</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <container name="product.info.banner" htmlTag="div" htmlClass="product-info-banner" after="product.info.main">
+                <block class="Magento\Framework\View\Element\Template"
+                       name="product.view.banner"
+                       template="Magento_Catalog::product/view/banner.phtml"
+                       before="-"/>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="product.info.extrahint">
+            <block class="Magento\Framework\View\Element\Template" name="custom.textarea.block" template="Magento_Catalog::product/view/textarea.phtml" after="-"
+        />
+        </referenceContainer>
     </body>
 </page>
