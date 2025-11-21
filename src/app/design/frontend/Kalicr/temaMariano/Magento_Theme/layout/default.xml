@@ -22,5 +22,7 @@
             </block>
         </referenceContainer>
 
+        <move element="top.search" destination="header-wrapper" before="logo"/>
+
     </body>
 </page>
