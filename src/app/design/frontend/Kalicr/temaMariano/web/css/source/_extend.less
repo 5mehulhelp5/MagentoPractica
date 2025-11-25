@@ -84,13 +84,11 @@
     content: 'X' !important;
 }
 
-/* Timer & Banner Wrapper */
 .checkout-timer-banner-wrapper {
     margin: 20px 0;
     clear: both;
 }
 
-/* Timer Styles */
 .checkout-timer {
     background: #f8f9fa;
     border: 2px solid #006bb4;
@@ -117,7 +115,6 @@
     font-family: 'Courier New', monospace;
 }
 
-/* Banner Styles */
 .checkout-banner {
     text-align: center;
     margin: 0 0 25px 0;
@@ -127,10 +124,9 @@
     max-width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Ensure proper positioning relative to progress bar */
 .opc-progress-bar {
     margin-bottom: 0 !important;
 }
@@ -139,50 +135,125 @@
     margin-top: 0;
 }
 
-/* Clear layout */
 .page-wrapper {
     clear: both;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .checkout-timer-banner-wrapper {
         margin: 15px 0;
     }
-    
+
     .checkout-timer {
         padding: 12px;
         margin: 0 0 12px 0;
     }
-    
+
     .timer-display {
         font-size: 24px;
     }
-    
+
     .checkout-banner {
         margin: 0 0 20px 0;
     }
 }
 
-.checkout-container {
-    .step-content {
-        // Targets the container that holds both the payment methods and the sidebar
-        .payment-method._active {
-            display: flex;
-            flex-wrap: wrap; // Allows wrapping on smaller screens
-            gap: 20px; // Spacing between the columns
+#payment .shipping-information {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
 
-            // Main payment content (left column)
-            .step-title:first-of-type ~ div { // Targeting the payment method section
-                flex: 1 1 65%; // Takes up about 65% of the space
-                min-width: 300px;
-            }
+#payment .shipping-information-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
 
-            // The sidebar (right column)
-            .checkout-sidebar {
-                flex: 0 1 30%; // Takes up about 30% of the space
-                min-width: 250px;
-            }
-        }
-    }
+#payment .shipping-information-content {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    color: #555;
+}
+
+#payment .shipping-information-content div {
+    margin-bottom: 4px;
+}
+
+#payment .ship-to {
+    margin-top: 10px;
+}
+
+#payment .ship-to .shipping-address-item {
+    padding: 0;
+    border: none;
+}
+
+#payment .action.edit:hover {
+    color: #004a80;
+}
+
+#payment .shipping-information {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px; 
+}
+
+#payment .shipping-information .ship-to,
+#payment .shipping-information .shipping-method {
+    width: 48%;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+#payment .shipping-information .ship-to .edit {
+    font-size: 0; 
+    position: relative;
+    padding: 0 10px; 
+}
+
+#payment .shipping-information .ship-to .edit::after {
+    content: "\270F"; 
+    font-size: 16px; 
+    font-size: 1rem; 
+    color: #007bff; 
+}
+
+#payment .shipping-information .shipping-method .edit {
+    font-size: 0; 
+    position: relative;
+    padding: 0 10px; 
+}
+
+#payment .shipping-information .shipping-method .edit::after {
+    content: "\270F"; 
+    font-size: 1rem;
+    color: #007bff;
+}
+
+button.action-edit {
+    padding: 0 5px;
+    min-width: 20px;
+    height: 20px; 
+    overflow: visible;
+    line-height: 1; 
+}
+
+button.action-edit span[data-bind="i18n: 'edit'"] {
+    display: none !important;
+}
+
+button.action-edit::before {
+
+    content: "\270F"!important;
+    
+    font-size: 14px; 
+    color: #000000!important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: inherit !important;
 }
