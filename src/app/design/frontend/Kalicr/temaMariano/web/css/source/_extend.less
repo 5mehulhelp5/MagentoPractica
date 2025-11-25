@@ -76,10 +76,113 @@
 }
 
 .opc-wrapper .shipping-address-item.selected-item {
-  border-color: #33FF68 !important;
+    border-color: #33FF68 !important;
 }
 
 .opc-wrapper .shipping-address-item.selected-item::after {
-  background: #33FF68 !important;
-  content: 'X' !important;
+    background: #33FF68 !important;
+    content: 'X' !important;
+}
+
+/* Timer & Banner Wrapper */
+.checkout-timer-banner-wrapper {
+    margin: 20px 0;
+    clear: both;
+}
+
+/* Timer Styles */
+.checkout-timer {
+    background: #f8f9fa;
+    border: 2px solid #006bb4;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 0 0 15px 0;
+    text-align: center;
+}
+
+.timer-header {
+    margin-bottom: 10px;
+}
+
+.timer-header strong {
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.timer-display {
+    font-size: 28px;
+    font-weight: bold;
+    color: #006bb4;
+    font-family: 'Courier New', monospace;
+}
+
+/* Banner Styles */
+.checkout-banner {
+    text-align: center;
+    margin: 0 0 25px 0;
+}
+
+.banner-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Ensure proper positioning relative to progress bar */
+.opc-progress-bar {
+    margin-bottom: 0 !important;
+}
+
+.checkout-index-index .opc-wrapper {
+    margin-top: 0;
+}
+
+/* Clear layout */
+.page-wrapper {
+    clear: both;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .checkout-timer-banner-wrapper {
+        margin: 15px 0;
+    }
+    
+    .checkout-timer {
+        padding: 12px;
+        margin: 0 0 12px 0;
+    }
+    
+    .timer-display {
+        font-size: 24px;
+    }
+    
+    .checkout-banner {
+        margin: 0 0 20px 0;
+    }
+}
+
+.checkout-container {
+    .step-content {
+        // Targets the container that holds both the payment methods and the sidebar
+        .payment-method._active {
+            display: flex;
+            flex-wrap: wrap; // Allows wrapping on smaller screens
+            gap: 20px; // Spacing between the columns
+
+            // Main payment content (left column)
+            .step-title:first-of-type ~ div { // Targeting the payment method section
+                flex: 1 1 65%; // Takes up about 65% of the space
+                min-width: 300px;
+            }
+
+            // The sidebar (right column)
+            .checkout-sidebar {
+                flex: 0 1 30%; // Takes up about 30% of the space
+                min-width: 250px;
+            }
+        }
+    }
 }

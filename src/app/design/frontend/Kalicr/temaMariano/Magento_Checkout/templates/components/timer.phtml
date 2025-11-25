@@ -1,0 +1,18 @@
+<div id="checkout-timer-component" data-bind="scope: 'checkoutTimer'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#checkout-timer-component": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "checkoutTimer": {
+                    "component": "Magento_Checkout/js/view/timer",
+                    "template": "Magento_Checkout/components/timer"
+                }
+            }
+        }
+    }
+}
+</script>

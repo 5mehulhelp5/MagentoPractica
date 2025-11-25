@@ -1,0 +1,18 @@
+<div id="checkout-banner-component" data-bind="scope: 'checkoutBanner'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#checkout-banner-component": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "checkoutBanner": {
+                    "component": "Magento_Checkout/js/view/banner",
+                    "template": "Magento_Checkout/components/banner"
+                }
+            }
+        }
+    }
+}
+</script>

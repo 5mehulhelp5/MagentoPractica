@@ -1,0 +1,39 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+<div class="checkout-timer-banner-wrapper">
+    <!-- Timer -->
+    <div id="checkout-timer-component" data-bind="scope: 'checkoutTimer'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+
+    <!-- Banner -->
+    <div id="checkout-banner-component" data-bind="scope: 'checkoutBanner'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#checkout-timer-component": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "checkoutTimer": {
+                    "component": "Magento_Checkout/js/view/timer",
+                    "template": "Magento_Checkout/components/timer"
+                }
+            }
+        }
+    },
+    "#checkout-banner-component": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "checkoutBanner": {
+                    "component": "Magento_Checkout/js/view/banner",
+                    "template": "Magento_Checkout/components/banner"
+                }
+            }
+        }
+    }
+}
+</script>

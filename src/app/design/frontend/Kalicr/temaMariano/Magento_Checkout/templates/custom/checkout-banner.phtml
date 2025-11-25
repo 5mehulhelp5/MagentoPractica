@@ -1,0 +1,8 @@
+<div class="checkout-banner">
+    <img src="<?= $this->getViewFileUrl('images/banner.jpg'); ?>" alt="Banner">
+</div>
+
+<div id="checkout-timer" class="checkout-timer"></div>
+<script>
+    require(['Magento_Checkout/js/timer'], function(timer){ timer(); });
+</script>
