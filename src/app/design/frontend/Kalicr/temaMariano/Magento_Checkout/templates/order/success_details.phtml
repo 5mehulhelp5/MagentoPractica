@@ -1,0 +1,122 @@
+<?php
+/**
+ * Custom Success Page Order Details
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$checkoutSession = $objectManager->get('\Magento\Checkout\Model\Session');
+$orderFactory = $objectManager->get('\Magento\Sales\Model\OrderFactory');
+$priceHelper = $objectManager->get('\Magento\Framework\Pricing\Helper\Data');
+// Fix: Load Address Config to render address properly
+$addressConfig = $objectManager->get('\Magento\Customer\Model\Address\Config');
+
+$orderId = $checkoutSession->getLastOrderId();
+$order = null;
+
+if ($orderId) {
+    $order = $orderFactory->create()->load($orderId);
+}
+?>
+
+<?php if ($order): ?>
+    <div class="custom-success-order-details" style="margin-top: 30px;">
+        
+        <h3 style="font-weight: bold; margin-bottom: 15px;"><?= $block->escapeHtml(__('Order Details')) ?></h3>
+        <div class="table-wrapper order-items">
+            <table class="data table table-order-items">
+                <thead>
+                    <tr>
+                        <th class="col name"><?= $block->escapeHtml(__('Item')) ?></th>
+                        <th class="col sku"><?= $block->escapeHtml(__('SKU')) ?></th>
+                        <th class="col price"><?= $block->escapeHtml(__('Price')) ?></th>
+                        <th class="col qty"><?= $block->escapeHtml(__('Qty')) ?></th>
+                        <th class="col subtotal"><?= $block->escapeHtml(__('Subtotal')) ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($order->getAllVisibleItems() as $item): ?>
+                        <tr>
+                            <td class="col name" data-th="<?= $block->escapeHtmlAttr(__('Item')) ?>">
+                                <strong class="product-item-name"><?= $block->escapeHtml($item->getName()) ?></strong>
+                            </td>
+                            <td class="col sku" data-th="<?= $block->escapeHtmlAttr(__('SKU')) ?>">
+                                <?= $block->escapeHtml($item->getSku()) ?>
+                            </td>
+                            <td class="col price" data-th="<?= $block->escapeHtmlAttr(__('Price')) ?>">
+                                <?= $priceHelper->currency($item->getPrice(), true, false) ?>
+                            </td>
+                            <td class="col qty" data-th="<?= $block->escapeHtmlAttr(__('Qty')) ?>">
+                                <?= (int)$item->getQtyOrdered() ?>
+                            </td>
+                            <td class="col subtotal" data-th="<?= $block->escapeHtmlAttr(__('Subtotal')) ?>">
+                                <?= $priceHelper->currency($item->getRowTotal(), true, false) ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                     <tr class="grand_total">
+                        <td colspan="4" style="text-align:right; padding: 15px;">
+                            <strong><?= $block->escapeHtml(__('Grand Total')) ?></strong>
+                        </td>
+                        <td class="amount" style="padding: 15px;">
+                            <strong><?= $priceHelper->currency($order->getGrandTotal(), true, false) ?></strong>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="block-order-details-view" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 30px; background: #f5f5f5; padding: 20px;">
+            
+            <div class="box box-order-shipping-address" style="flex: 1; min-width: 200px;">
+                <strong class="box-title" style="display:block; margin-bottom:10px;">
+                    <span><?= $block->escapeHtml(__('Ship To')) ?></span>
+                </strong>
+                <div class="box-content">
+                    <?php if ($order->getShippingAddress()): ?>
+                        <address>
+                            <?php 
+                                // FIX: Use renderer to format address array instead of calling format() directly
+                                $renderer = $addressConfig->getFormatByCode('html')->getRenderer();
+                                echo $renderer->renderArray($order->getShippingAddress()->getData()); 
+                            ?>
+                        </address>
+                    <?php else: ?>
+                        <?= $block->escapeHtml(__('No shipping address (Virtual Order)')) ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="box box-order-shipping-method" style="flex: 1; min-width: 200px;">
+                <strong class="box-title" style="display:block; margin-bottom:10px;">
+                    <span><?= $block->escapeHtml(__('Shipping Method')) ?></span>
+                </strong>
+                <div class="box-content">
+                    <?php if ($order->getShippingDescription()): ?>
+                        <?= $block->escapeHtml($order->getShippingDescription()) ?>
+                    <?php else: ?>
+                        <?= $block->escapeHtml(__('No shipping information available')) ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="box box-order-billing-method" style="flex: 1; min-width: 200px;">
+                <strong class="box-title" style="display:block; margin-bottom:10px;">
+                    <span><?= $block->escapeHtml(__('Payment Method')) ?></span>
+                </strong>
+                <div class="box-content">
+                    <?php 
+                        try {
+                            $payment = $order->getPayment();
+                            $method = $payment->getMethodInstance();
+                            echo $block->escapeHtml($method->getTitle());
+                        } catch (\Exception $e) {
+                            echo $block->escapeHtml(__('Payment method info unavailable'));
+                        }
+                    ?>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+<?php endif; ?>
