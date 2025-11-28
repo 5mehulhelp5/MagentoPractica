@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add 
+            id="MarcasVendor_Marcas::marcas" 
+            title="Marcas" 
+            module="MarcasVendor_Marcas" 
+            sortOrder="50" 
+            resource="MarcasVendor_Marcas::marcas"
+        />
+        <add 
+            id="MarcasVendor_Marcas::data" 
+            title="Data" 
+            module="MarcasVendor_Marcas" 
+            sortOrder="10" 
+            parent="MarcasVendor_Marcas::marcas" 
+            action="marcas/data" 
+            resource="MarcasVendor_Marcas::data"
+        />
+    </menu>
+</config>

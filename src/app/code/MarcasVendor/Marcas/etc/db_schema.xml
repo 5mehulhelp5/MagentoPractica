@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="marcasdata" resource="default" engine="innodb" comment="Marcas Data Table">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="nombre" nullable="false" length="255" comment="Nombre"/>
+        <column xsi:type="varchar" name="logo" nullable="true" length="255" comment="Logo"/>
+        <column xsi:type="varchar" name="id_atributo_selector" nullable="true" length="255" comment="ID Atributo Selector"/>
+        <column xsi:type="int" name="posicion" nullable="false" default="0" comment="Posición"/>
+        <column xsi:type="smallint" name="status" nullable="false" default="0" comment="Status"/>
+        <column xsi:type="varchar" name="id_categoria" nullable="true" length="255" comment="ID Categoría"/>
+        <column xsi:type="varchar" name="banner_principal" nullable="true" length="255" comment="Banner Principal"/>
+        <column xsi:type="varchar" name="descripcion_principal" nullable="true" length="255" comment="Descripción Principal"/>
+        <column xsi:type="varchar" name="provincia" nullable="false" length="100" comment="Provincia"/>
+        <column xsi:type="varchar" name="canton" nullable="false" length="100" comment="Cantón"/>
+        <column xsi:type="varchar" name="distrito" nullable="false" length="100" comment="Distrito"/>
+        <column xsi:type="varchar" name="direccion_exacta" nullable="false" length="255" comment="Dirección Exacta"/>
+        <column xsi:type="varchar" name="latitud" nullable="true" length="100" comment="Latitud"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>
